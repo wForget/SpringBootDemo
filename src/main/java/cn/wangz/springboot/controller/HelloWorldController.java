@@ -43,6 +43,7 @@ public class HelloWorldController {
         return users.stream().filter(user -> user.getName().equals(name)).collect(Collectors.toList());
     }
 
+    //支持post json格式的参数
     @RequestMapping("/getUserByFilter")
     public List<User> getUserByFilter(@RequestBody(required = false) UserFilter filter) {
         List<User> users = new ArrayList<>();
