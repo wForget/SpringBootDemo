@@ -1,0 +1,13 @@
+ref:https://docs.spring.io/spring-boot/docs/2.0.4.RELEASE/reference/htmlsingle/#boot-features-custom-log-levels
+
+配置日志级别：
+1、在application.properties中配置
+logging.level.root=WARN
+logging.level.org.springframework.web=DEBUG
+logging.level.org.hibernate=ERROR
+
+2、日志系统
+Logging System              Customization
+Logback                     logback-spring.xml, logback-spring.groovy, logback.xml, or logback.groovy
+Log4j2                      log4j2-spring.xml or log4j2.xml
+JDK (Java Util Logging)     logging.properties

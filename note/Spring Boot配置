@@ -1,0 +1,11 @@
+应用配置文件（application.properties或application.yml）
+application.properties配置文件中直接写：
+name=Isea533
+server.port=8080
+application.yml格式的配置文件如（使用.yml时，属性名的值和冒号中间必须有空格）：
+name: Isea533
+server:
+    port: 8080
+
+您可以使用属性文件，YAML文件，环境变量和命令行参数来外部化配置。
+属性值可以通过直接注射到你的bean @Value注释，通过Spring的访问Environment抽象，或者被 绑定到结构化对象通过@ConfigurationProperties。

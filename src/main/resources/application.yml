@@ -1,0 +1,8 @@
+name: SpringBootDemo
+server:
+    port: 8081
+
+mongo:
+  cluster: 127.0.0.1:27017
+  db: db
+  col: col

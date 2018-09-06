@@ -1,0 +1,18 @@
+1、@controller 控制器（注入服务）
+用于标注控制层，相当于struts中的action层
+
+2、@service 服务（注入dao）
+用于标注服务层，主要用来进行业务的逻辑处理
+
+3、@repository（实现dao访问）
+用于标注数据访问层，也可以说用于标注数据访问组件，即DAO组件.
+
+4、@component （把普通pojo实例化到spring容器中，相当于配置文件中的 <bean id="" class=""/>）
+
+5、@ComponentScan （定义哪些包需要被扫描）
+如果你的其他包都在使用了@SpringBootApplication注解的main app所在的包及其下级包，则你什么都不用做，SpringBoot会自动帮你把其他包都扫描了
+如果你有一些bean所在的包，不在main app的包及其下级包，那么你需要手动加上@ComponentScan注解并指定那个bean所在的包
+
+6、@PostConstruct
+如果想在生成对象时候完成某些初始化操作，而偏偏这些初始化操作又依赖于依赖注入，那么就无法在构造函数中实现。
+为此，可以使用@PostConstruct注解一个方法来完成初始化，@PostConstruct注解的方法将会在依赖注入完成后被自动调用。
