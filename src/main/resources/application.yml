@@ -2,7 +2,38 @@ name: SpringBootDemo
 server:
     port: 8081
 
-mongo:
-  cluster: 127.0.0.1:27017
-  db: db
-  col: col
+spring:
+  data:
+    mongodb:
+#      host: "192.168.1.100"
+#      port: 27017
+      database: "db"
+#      authentication-database: "admin"
+#      username: "username"
+#      password: "password"
+      uri: "mongodb://username:password@host1,host2,host3/admin?authMechanism=SCRAM-SHA-1&replicaSet=replSet01"
+  redis:
+    host: "192.168.1.100"
+    port: 6379
+    database: 6
+    jedis:
+      pool:
+        max-active: 50
+        max-idle: 20
+        min-idle: 10
+        max-wait: 3000
+  kafka:
+    producer:
+      acks: "all"
+      bootstrap-servers: "192.168.1.100:9093,192.168.1.101:9093,192.168.1.102:9093"
+      retries: "3"
+      batch-size: "16384"
+      buffer-memory: "67108864"
+      compression-type: "gzip"
+      key-serializer: "org.apache.kafka.common.serialization.StringSerializer"
+      value-serializer: "org.apache.kafka.common.serialization.StringSerializer"
+
+hbase:
+  quorum: "datanode03,datanode05,datanode04"
+  clientPort: 2181
+  table: "table"

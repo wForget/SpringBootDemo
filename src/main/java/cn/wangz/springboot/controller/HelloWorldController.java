@@ -2,6 +2,8 @@ package cn.wangz.springboot.controller;
 
 import cn.wangz.springboot.bean.User;
 import cn.wangz.springboot.bean.UserFilter;
+import cn.wangz.springboot.service.AsyncService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,10 +19,16 @@ import java.util.stream.Collectors;
 @RestController
 public class HelloWorldController {
 
+    @Autowired
+    private AsyncService asyncService;
+
     @RequestMapping("/getUser")
     public List<User> getUser() {
         List<User> users = new ArrayList<>();
         User user1 = new User(1, "w1", 20, 1);
+
+        asyncService.printUser(user1);
+
         users.add(user1);
         User user2 = new User(2, "w2", 20, 2);
         users.add(user2);

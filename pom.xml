@@ -7,7 +7,16 @@
     <groupId>cn.wangz.springboot</groupId>
     <artifactId>SpringBootDemo</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <spring.hadoop.version>2.5.0.RELEASE</spring.hadoop.version>
+        <hbase.version>1.2.0</hbase.version>
+        <cdh.version>5.8.0</cdh.version>
+    </properties>
     <!-- Inherit defaults from Spring Boot -->
     <!--
     The spring-boot-starter-parent is a great way to use Spring Boot, but it might not be suitable all of the time.
@@ -62,13 +71,70 @@
             <scope>provided</scope>
         </dependency>
 
+
+        <!-- mongodb -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+
+        <!-- redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-hadoop</artifactId>
+            <version>${spring.hadoop.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context-support</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>servlet-api</artifactId>
+                    <groupId>javax.servlet</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- hbase -->
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>${hbase.version}-cdh${cdh.version}</version>
+            <scope>compile</scope>
+            <exclusions>
+                <!--<exclusion>-->
+                <!--<groupId>log4j</groupId>-->
+                <!--<artifactId>log4j</artifactId>-->
+                <!--</exclusion>-->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>servlet-api</artifactId>
+                    <groupId>javax.servlet</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- kafka -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>2.2.2.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
-
-    <!-- Package as an executable jar -->
     <build>
         <plugins>
             <plugin>

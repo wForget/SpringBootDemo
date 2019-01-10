@@ -1,16 +1,14 @@
 package cn.wangz.springboot;
 
-import cn.wangz.springboot.conf.MgoConf1;
-import cn.wangz.springboot.conf.MgoConf2;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * Created by hadoop on 2018/9/6.
@@ -24,7 +22,10 @@ import org.springframework.context.annotation.Bean;
  *
  * SpringBootApplication exclude 可以配置排除的类，可以排除一些自动配置的类
  */
-@SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class, DataSourceAutoConfiguration.class})
+@SpringBootApplication
+@ComponentScan
+@EnableScheduling
+@EnableAsync
 @Slf4j
 public class Application {
 
@@ -37,17 +38,6 @@ public class Application {
         return args -> {
 
             //CommandLineRunner 中可以做一些初始化的工作
-
-            log.info("MgoConf1: " + MgoConf1.INSTANCE.toString());
-            log.info("MgoConf2: " + MgoConf2.INSTANCE.toString());
         };
     }
 }
-
-//class LoadConf implements CommandLineRunner {
-//
-//    @Override
-//    public void run(String... args) throws Exception {
-//        //CommandLineRunner 中可以做一些初始化的工作
-//    }
-//}
